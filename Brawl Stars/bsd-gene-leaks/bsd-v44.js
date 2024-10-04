@@ -1,5 +1,3 @@
-//leak by erder
-
 // Exports
 const base = Module.getBaseAddress('libg.so');
 const access = new NativeFunction(Module.getExportByName('libc.so', 'access'), 'int', ['pointer', 'int']);
