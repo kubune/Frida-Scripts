@@ -1,4 +1,3 @@
-// t.me/shadowbrawl
 const Libg = {
     init() {
         Libg.module = Process.findModuleByName("libg.so");
