@@ -47,7 +47,7 @@ function redirectHost(ifuckedup) { //blyat
   Interceptor.attach(Module.findExportByName('libc.so', 'connect'), {
     'onEnter': function (_0x1efefd) {
       if (_0x4d0e20(Memory.readU16(_0x1efefd[0x1].add(0x2))) === 0x247b) {
-        var _0x42715c = Memory.allocUtf8String(127.0.0.1); //ip
+        var _0x42715c = Memory.allocUtf8String("127.0.0.1"); //ip
         Memory.writeInt(_0x1efefd[0x1].add(0x4), _0x21aad8(9339)); //port
       }
     }
