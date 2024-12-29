@@ -41,13 +41,13 @@ function lptr(_0x4eaf13, _0x29dc09) {
   const _0xb193d5 = moduleInfo(_0x4eaf13);
   return _0xb193d5.base.add(_0x29dc09);
 }
-function redirectHost(127.0.0.1) { //ip
+function redirectHost(ifuckedup) { //blyat
   const _0x4d0e20 = new NativeFunction(Module.findExportByName('libc.so', 'ntohs'), 'uint16', ['uint16']);
   const _0x21aad8 = new NativeFunction(Module.findExportByName('libc.so', 'inet_addr'), 'int', ['pointer']);
   Interceptor.attach(Module.findExportByName('libc.so', 'connect'), {
     'onEnter': function (_0x1efefd) {
       if (_0x4d0e20(Memory.readU16(_0x1efefd[0x1].add(0x2))) === 0x247b) {
-        var _0x42715c = Memory.allocUtf8String(_0x43365c);
+        var _0x42715c = Memory.allocUtf8String("127.0.0.1"); //ip
         Memory.writeInt(_0x1efefd[0x1].add(0x4), _0x21aad8(9339)); //port
       }
     }
