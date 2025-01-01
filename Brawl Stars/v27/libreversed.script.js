@@ -13,6 +13,7 @@ const HostPatcher = {
 			onEnter(args) {
 				if (args[0].readUtf8String() == "game.brawlstarsgame.com") {
 					args[0].writeUtf8String("127.0.0.1"); // SET YOUR IP HERE
+					args[1].writeUtf8String("9339"); // SET YOUR PORT HERE
 				}
 			}
 		});

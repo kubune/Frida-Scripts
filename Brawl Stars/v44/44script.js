@@ -1,4 +1,3 @@
-// our tg:@servers_bs
 const Libg = {
     init() {
         let module = Process.findModuleByName("libg.so");

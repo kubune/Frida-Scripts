@@ -1,7 +1,7 @@
 var cache = {
 	modules: {},
 	options: {}
-};//25.107
+};
 
 const base = Process.findModuleByName('libg.so').base;
 
