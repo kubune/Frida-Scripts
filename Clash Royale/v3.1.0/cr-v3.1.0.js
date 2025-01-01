@@ -32,15 +32,13 @@ const nativeFunctions = {
     select: new NativeFunction(Module.findExportByName('libc.so', 'select'), 'int', ['int', 'pointer', 'pointer', 'pointer', 'pointer'])
 };
 
-function Connect() {
+function redirectHost() {
     Interceptor.attach(Module.findExportByName('libc.so', 'pthread_mutex_lock'), {
         onEnter: function (args) {
             if (ntohs(Memory.readU16(args[1].add(2))) === 0x247b) {
                 config.fd = args[0].toInt32();
-                if (config.options.redirectHost) {
-                    const host = Memory.allocUtf8String("127.0.0.1");
-                    Memory.writeInt(args[1].add(4), nativeFunctions.inet_addr(host));
-                }
+                const host = Memory.allocUtf8String("127.0.0.1");
+                Memory.writeInt(args[1].add(4), nativeFunctions.inet_addr(host));
                 wakeUp();
             }
         }
@@ -66,7 +64,7 @@ rpc.exports = {
         Java.perform(function () {
             Interceptor.detachAll();
             config.base = Process.getModuleByName('libg.so').base;
-            Connect();
+            redirectHost();
         });
     }
 };
